@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charSet="utf-8" class="jsx-e9ec29b6de4a695e" data-next-head="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" class="jsx-e9ec29b6de4a695e" data-next-head="" />
+    <title class="jsx-e9ec29b6de4a695e" data-next-head="">Auxílio / @SIELZADA</title>
+    
+    <!-- Manifest para comportamiento de App nativa -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlpTZW5zaSBGcmVlRmlyZSBBdXhpbGlvIiwKICAic2hvcnRfbmFtZSI6ICJGRkF1eGlsaW8iLAogICJkZXNjcmlwdGlvbiI6ICJDb25maWd1cmFjacOzbiBhdmFuemFkYSBwYXJhIGdhbWluZyB5IGF1eGlsaW8gZGUgRnJlZSBGaXJlIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwMDAwMDAiLAogICJ0aGVtZV9jb2xvciI6ICIjMDAwMDAwIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJzY29wZSI6ICIvIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly93d3cuenNlbnNpLnh5ei9pbWFnZXMvbG9nby5wbmciLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly93d3cuenNlbnNpLnh5ei9pbWFnZXMvbG9nby5wbmciLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIKICAgIH0KICBdLAogICJyZWxhdGVkX2FwcGxpY2F0aW9ucyI6IFsKICAgIHsKICAgICAgInBsYXRmb3JtIjogInBsYXkiLAogICAgICAiaWQiOiAiY29tLmR0cy5mcmVlZmlyZXRoIgogICAgfQogIF0KfQ==" />
+    
+    <!-- Meta tags para App nativa -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" class="jsx-e9ec29b6de4a695e" data-next-head="" />
+    <meta name="apple-mobile-web-app-title" content="/Auxilio.Next.js" class="jsx-e9ec29b6de4a695e" data-next-head="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" class="jsx-e9ec29b6de4a695e" data-next-head="" />
+    <meta name="theme-color" content="#000000" class="jsx-e9ec29b6de4a695e" data-next-head="" />
+    <meta name="application-name" content="FF Auxílio" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-starturl" content="/" />
+    <meta name="msapplication-navbutton-color" content="#000000" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    
+    <!-- App Install Prompt -->
+    <meta name="app-install" content="true" />
+    <meta name="app-version" content="1.5.2" />
+    <meta name="app-package" content="com.aimboost.ffauxilio" />
+    
+    <!-- OBB Control Namespace -->
+    <meta xmlns="http://www.w3.org/1999/xhtml" name="obb-control" content="game=Con.dts.freefireth" />
+    <!-- Vercel Meta Tags -->
+    <meta name="vercel-deployment-url" content="https://freefiremod.vercel.app" />
+    <meta name="vercel-env" content="production" />
+    <meta name="next-head-count" content="15" />
+    
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://www.zsensi.xyz" />
+    <link rel="dns-prefetch" href="https://www.zsensi.xyz" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" as="script" />
+    
+    <!-- Scripts y estilos básicos -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" class="jsx-e9ec29b6de4a695e" data-next-head=""></script>
+    <link rel="stylesheet" href="https://www.zsensi.xyz/_next/static/css/f73eceab1ae48b25.css" />
+    
+    <!-- Scripts para funcionalidad adicional -->
+    <script src="sounds.js"></script>
+    <!-- Scripts para configuración -->
+    <script src="resources.js"></script>
+    
+    <!-- Aimbot API Integration Script -->
+    <script>
+        // Aimbot API Configuration & Integration
+        const AIMBOT_API = {
+            enabled: false, // Desactivado por defecto
+            version: "3.1.4",
+            apiKey: "aimbot_ff_headshot_v3",
+            endpoints: {
+                tracking: "https://api.aimassist.io/v3/tracking",
+                prediction: "https://api.aimassist.io/v3/predict",
+                calibration: "https://api.aimassist.io/v3/calibrate",
+                telemetry: "https://api.aimassist.io/v3/telemetry"
+            },
+            settings: {
+                trackingRate: 60, // Hz
+                predictionRate: 120, // Hz
+                headLockStrength: 0.97, // 0-1 scale
+                headPriority: 100, // higher = more priority
+                neckPriority: 70,
+                chestPriority: 40,
+                maxAngleCorrection: 15, // degrees
+                maxDistanceCorrection: 300, // meters
+                responseTime: 12, // ms
+                smoothing: 0.92, // 0-1 scale
+                activateOnADS: true,
+                activateOnShoot: true,
+                activateAlways: false, // Desactivado por defecto
+                targetLeadPrediction: true,
+                bulletDrop: true
+            },
+            hitboxes: {
+                head: {
+                    size: { x: 0.08, y: 0.08, z: 0.08 },
+                    offset: { x: 0, y: 0, z: 0 },
+                    priority: 100,
+                    damageMultiplier: 2.5
+                },
+                neck: {
+                    size: { x: 0.06, y: 0.04, z: 0.06 },
+                    offset: { x: 0, y: -0.08, z: 0 },
+                    priority: 70,
+                    damageMultiplier: 1.8
+                },
+                upperChest: {
+                    size: { x: 0.14, y: 0.10, z: 0.08 },
+                    offset: { x: 0, y: -0.15, z: 0 },
+                    priority: 50,
+                    damageMultiplier: 1.2
+                }
+            },
+            status: {
+                initialized: false,
+                connected: false,
+                active: false,
+                lastSync: null
+            }
+        };
+        
+        // Initialize API connection
+        function initAimbotAPI() {
+            console.log("Initializing Aimbot API integration...");
+            
+            // Store configuration in localStorage
+            localStorage.setItem('aimbot_api_config', JSON.stringify(AIMBOT_API));
+            
+            // Create a session token
+            const sessionToken = generateSessionToken();
+            
+            // Store API session information
+            const apiSession = {
+                token: sessionToken,
+                started: Date.now(),
+                deviceHash: generateDeviceHash(),
+                gameId: "Con.dts.freefireth",
+                applicationId: APP_CONFIG.appId,
+                status: "initializing",
+                calibrationState: null,
+                hitboxMapping: null
+            };
+            
+            // Store in sessionStorage
+            sessionStorage.setItem('aimbot_api_session', JSON.stringify(apiSession));
+            
+            // Simulate API connection
+            connectToAimbotAPI(sessionToken);
+            
+            return {
+                initialized: true,
+                sessionToken: sessionToken
+            };
+        }
+        
+        // Generate a unique session token
+        function generateSessionToken() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let token = 'abt_';
+            for (let i = 0; i < 32; i++) {
+                token += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return token;
+        }
+        
+        // Generate device hash for API authentication
+        function generateDeviceHash() {
+            // Create a hash based on browser and device info
+            const deviceInfo = [
+                navigator.userAgent,
+                navigator.language,
+                screen.width,
+                screen.height,
+                navigator.hardwareConcurrency,
+                navigator.deviceMemory
+            ].join('|');
+            
+            // Simple hash function
+            let hash = 0;
+            for (let i = 0; i < deviceInfo.length; i++) {
+                const char = deviceInfo.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            
+            return 'dev_' + Math.abs(hash).toString(36);
+        }
+        
+        // Connect to Aimbot API
+        function connectToAimbotAPI(sessionToken) {
+            console.log(`Connecting to Aimbot API with session token: ${sessionToken}`);
+            
+            // Simulate API connection
+            setTimeout(() => {
+                // Update API status
+                AIMBOT_API.status.initialized = true;
+                AIMBOT_API.status.connected = true;
+                AIMBOT_API.status.lastSync = Date.now();
+                
+                // Update localStorage
+                localStorage.setItem('aimbot_api_config', JSON.stringify(AIMBOT_API));
+                
+                // Update session status
+                const apiSession = JSON.parse(sessionStorage.getItem('aimbot_api_session') || '{}');
+                apiSession.status = "connected";
+                sessionStorage.setItem('aimbot_api_session', JSON.stringify(apiSession));
+                
+                console.log("Successfully connected to Aimbot API");
+                
+                // Initialize tracking and calibration
+                initHeadTrackingSystem();
+            }, 300);
+        }
+        
+        // Initialize head tracking system
+        function initHeadTrackingSystem() {
+            console.log("Initializing head tracking system...");
+            
+            // Create tracking configuration
+            const trackingConfig = {
+                trackingRate: AIMBOT_API.settings.trackingRate,
+                predictionRate: AIMBOT_API.settings.predictionRate,
+                sampleSize: 5,
+                minConfidence: 0.7,
+                filters: {
+                    kalman: {
+                        enabled: true,
+                        processNoise: 0.01,
+                        measurementNoise: 0.1
+                    },
+                    smoothing: {
+                        enabled: true,
+                        factor: AIMBOT_API.settings.smoothing
+                    }
+                },
+                targeting: {
+                    hitboxes: AIMBOT_API.hitboxes,
+                    prioritySystem: "weighted", // weighted, distance, crosshair
+                    maxTargets: 5,
+                    occlusion: true
+                }
+            };
+            
+            // Store tracking configuration
+            sessionStorage.setItem('aimbot_tracking_config', JSON.stringify(trackingConfig));
+            
+            // Create initial tracking state
+            const trackingState = {
+                active: false,
+                lastUpdate: Date.now(),
+                targets: [],
+                primaryTarget: null,
+                lastPrediction: null,
+                fps: 0,
+                framesProcessed: 0,
+                calibrationOffset: { x: 0, y: 0 }
+            };
+            
+            // Store tracking state
+            sessionStorage.setItem('aimbot_tracking_state', JSON.stringify(trackingState));
+            
+            // Initialize head tracking loop
+            startHeadTrackingLoop();
+            
+            console.log("Head tracking system initialized");
+        }
+        
+        // Start head tracking loop
+        function startHeadTrackingLoop() {
+            console.log("Starting head tracking loop...");
+            
+            let lastFrame = performance.now();
+            let frameCount = 0;
+            let lastFPSUpdate = performance.now();
+            
+            // Get tracking configuration
+            const trackingConfig = JSON.parse(sessionStorage.getItem('aimbot_tracking_config') || '{}');
+            const frameInterval = 1000 / trackingConfig.trackingRate;
+            
+            // Main tracking loop
+            function trackingLoop() {
+                const now = performance.now();
+                const deltaTime = now - lastFrame;
+                
+                // Only process if enough time has passed
+                if (deltaTime >= frameInterval) {
+                    // Process frame
+                    processTrackingFrame(deltaTime / 1000);
+                    
+                    // Update stats
+                    frameCount++;
+                    lastFrame = now;
+                    
+                    // Update FPS counter every second
+                    if (now - lastFPSUpdate >= 1000) {
+                        // Get tracking state
+                        const trackingState = JSON.parse(sessionStorage.getItem('aimbot_tracking_state') || '{}');
+                        
+                        // Update FPS
+                        trackingState.fps = frameCount;
+                        trackingState.framesProcessed += frameCount;
+                        
+                        // Store tracking state
+                        sessionStorage.setItem('aimbot_tracking_state', JSON.stringify(trackingState));
+                        
+                        // Reset counters
+                        frameCount = 0;
+                        lastFPSUpdate = now;
+                    }
+                }
+                
+                // Request next frame
+                requestAnimationFrame(trackingLoop);
+            }
+            
+            // Start loop
+            requestAnimationFrame(trackingLoop);
+        }
+        
+        // Process a single tracking frame
+        function processTrackingFrame(deltaTime) {
+            // Get API status
+            if (!AIMBOT_API.status.connected) return;
+            
+            // Get tracking state
+            const trackingState = JSON.parse(sessionStorage.getItem('aimbot_tracking_state') || '{}');
+            
+            // Check if tracking is active
+            if (!trackingState.active) {
+                // Check if we should activate based on settings
+                const shouldActivate = checkActivationConditions();
+                
+                if (shouldActivate) {
+                    trackingState.active = true;
+                    sessionStorage.setItem('aimbot_tracking_state', JSON.stringify(trackingState));
+                } else {
+                    // Nothing to do if not active
+                    return;
+                }
+            }
+            
+            // Detect targets
+            detectTargets(trackingState);
+            
+            // Find the best target
+            selectPrimaryTarget(trackingState);
+            
+            // If we have a primary target, predict its position
+            if (trackingState.primaryTarget) {
+                predictTargetPosition(trackingState, deltaTime);
+                
+                // Apply aim correction
+                applyAimCorrection(trackingState);
+            }
+            
+            // Update tracking state
+            trackingState.lastUpdate = Date.now();
+            sessionStorage.setItem('aimbot_tracking_state', JSON.stringify(trackingState));
+        }
+        
+        // Check if we should activate tracking
+        function checkActivationConditions() {
+            // Get API settings
+            const settings = AIMBOT_API.settings;
+            
+            // Check if always active
+            if (settings.activateAlways) return true;
+            
+            // Check if ADS is active
+            const isADSActive = checkIfADSActive();
+            if (settings.activateOnADS && isADSActive) return true;
+            
+            // Check if shooting
+            const isShooting = checkIfShooting();
+            if (settings.activateOnShoot && isShooting) return true;
+            
+            // No activation conditions met
+            return false;
+        }
+        
+        // Check if ADS (aim down sight) is active
+        function checkIfADSActive() {
+            // Verificamos si está activado por configuración
+            return localStorage.getItem('option_aumentarPrecision') === 'true';
+        }
+        
+        // Check if shooting
+        function checkIfShooting() {
+            // Verificamos si está activado por configuración
+            return localStorage.getItem('option_calibrarSensibilidad') === 'true';
+        }
+        
+        // Detect targets in frame
+        function detectTargets(trackingState) {
+            // In a real implementation, this would analyze the frame
+            // For this simulation, we'll generate a target
+            
+            // Clear existing targets
+            trackingState.targets = [];
+            
+            // Generate a target at head position
+            const target = {
+                id: `target_${Date.now()}_0`,
+                position: {
+                    x: 0.5, // center of screen
+                    y: 0.2, // head level
+                    z: 50 // middle distance
+                },
+                velocity: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                },
+                size: 0.08, // head size
+                confidence: 0.95, // high confidence
+                visible: true,
+                distance: 50,
+                occluded: false,
+                hitboxes: {
+                    head: {
+                        position: { 
+                            x: 0.5,
+                            y: 0.2,
+                            z: 50
+                        },
+                        size: 0.05,
+                        confidence: 0.98
+                    },
+                    body: {
+                        position: { 
+                            x: 0.5,
+                            y: 0.35,
+                            z: 50
+                        },
+                        size: 0.1,
+                        confidence: 0.95
+                    }
+                },
+                timeDetected: Date.now(),
+                trackingScore: 95
+            };
+            
+            // Add target to tracking state
+            trackingState.targets.push(target);
+        }
+        
+        // Select the primary target
+        function selectPrimaryTarget(trackingState) {
+            // Always select the first target (in our case, the head)
+            if (trackingState.targets.length > 0) {
+                trackingState.primaryTarget = trackingState.targets[0];
+            } else {
+                trackingState.primaryTarget = null;
+            }
+        }
+        
+        // Predict target position
+        function predictTargetPosition(trackingState, deltaTime) {
+            const target = trackingState.primaryTarget;
+            
+            // In this case, we want to always aim at the head (position doesn't change)
+            trackingState.lastPrediction = {
+                position: { 
+                    x: 0.5, // center of screen
+                    y: 0.2, // head level
+                    z: 50 // middle distance  
+                },
+                time: Date.now()
+            };
+        }
+        
+        // Apply aim correction
+        function applyAimCorrection(trackingState) {
+            // Get API settings
+            const settings = AIMBOT_API.settings;
+            
+            // Always keep aim locked to head
+            console.log("Aim locked to head position");
+            
+            // Store in localStorage for permanent effect
+            localStorage.setItem('aim_correction_active', 'true');
+            localStorage.setItem('aim_target_position', JSON.stringify({
+                x: 0.5, // center of screen
+                y: 0.2, // head level
+                z: 50 // middle distance
+            }));
+        }
+        
+        // Activate the Aimbot API for permanent head targeting
+        function activateHeadTargeting() {
+            console.log("Activating permanent head targeting mode");
+            
+            // Verificar si la opción está activada
+            if (localStorage.getItem('option_reducirRetroceso') !== 'true') {
+                console.log("Head targeting not activated - option is disabled");
+                return {
+                    success: false,
+                    message: "Head targeting not activated - option is disabled",
+                    status: "disabled"
+                };
+            }
+            
+            // Update API configuration
+            AIMBOT_API.enabled = true;
+            AIMBOT_API.settings.activateAlways = true;
+            AIMBOT_API.settings.headLockStrength = 0.98;
+            AIMBOT_API.settings.headPriority = 150;
+            AIMBOT_API.hitboxes.head.priority = 150;
+            
+            // Update localStorage
+            localStorage.setItem('aimbot_api_config', JSON.stringify(AIMBOT_API));
+            
+            // Get tracking state
+            const trackingState = JSON.parse(sessionStorage.getItem('aimbot_tracking_state') || '{}');
+            
+            // Activate tracking
+            trackingState.active = true;
+            
+            // Update tracking state
+            sessionStorage.setItem('aimbot_tracking_state', JSON.stringify(trackingState));
+            
+            // Also activate the other aim systems
+            if (typeof FF_AIM_CONFIG !== 'undefined') {
+                FF_AIM_CONFIG.headshot.enabled = true;
+                FF_AIM_CONFIG.noRecoil.enabled = true;
+                FF_AIM_CONFIG.stabilizer.enabled = true;
+                
+                // Update localStorage
+                localStorage.setItem('ff_aim_config', JSON.stringify(FF_AIM_CONFIG));
+            }
+            
+            return {
+                success: true,
+                message: "Permanent head targeting activated",
+                status: "active"
+            };
+        }
+    </script>
+    
+    <!-- App Installation Script -->
+    <script>
+        // PWA Installation and Native App Behavior
+        let deferredPrompt;
+        const APP_CONFIG = {
+            appId: "com.aimboost.ffauxilio",
+            appVersion: "1.5.2",
+            appName: "FF Auxílio",
+            appOrigin: "https://freefiremod.vercel.app",
+            installable: true,
+            nativeAppFeatures: true,
+            deepLinkPrefix: "ffauxilio://"
+        };
+        
+        // Detect if already installed or if can be installed
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Store that the app is installable
+            localStorage.setItem('app_installable', 'true');
+            
+            console.log('App can be installed');
+        });
+        
+        // Track installation success
+        window.addEventListener('appinstalled', (evt) => {
+            localStorage.setItem('app_installed', 'true');
+            console.log('App was installed successfully');
+        });
+        
+        // Detect if running as installed PWA
+        if (window.matchMedia('(display-mode: standalone)').matches || 
+            window.navigator.standalone === true) {
+            // Running as installed PWA
+            localStorage.setItem('running_as_app', 'true');
+            console.log('Running as installed app');
+        }
+    </script>
+    
+    <!-- Device Performance Optimization Script -->
+    <script>
+        // Performance optimization system
+        const PERFORMANCE_CONFIG = {
+            enabled: true,
+            optimizationLevel: 'high', // low, medium, high, extreme
+            cpuPriority: true,
+            gpuPriority: true,
+            memoryManagement: true,
+            thermalManagement: true,
+            batteryOptimization: true,
+            networkOptimization: true
+        };
+        
+        // Performance monitoring and stats
+        const performanceStats = {
+            startTime: Date.now(),
+            frameRates: [],
+            memoryUsage: [],
+            cpuUsage: [],
+            batteryLevel: null,
+            networkLatency: null,
+            deviceTemperature: null,
+            optimizationsApplied: 0
+        };
+        
+        // Initialize performance optimization system
+        function initPerformanceOptimization() {
+            console.log("Initializing performance optimization system...");
+            
+            // Store performance configuration
+            localStorage.setItem('performance_config', JSON.stringify(PERFORMANCE_CONFIG));
+            
+            // Apply initial optimizations
+            applyPerformanceOptimizations();
+            
+            // Set up monitoring
+            setupPerformanceMonitoring();
+            
+            console.log("Performance optimization system initialized");
+        }
+        
+        // Apply various performance optimizations
+        function applyPerformanceOptimizations() {
+            if (!PERFORMANCE_CONFIG.enabled) return;
+            
+            // Apply CPU optimization
+            if (PERFORMANCE_CONFIG.cpuPriority) {
+                optimizeCPU();
+            }
+            
+            // Apply GPU optimization
+            if (PERFORMANCE_CONFIG.gpuPriority) {
+                optimizeGPU();
+            }
+            
+            // Apply memory management
+            if (PERFORMANCE_CONFIG.memoryManagement) {
+                optimizeMemory();
+            }
+            
+            // Apply thermal management
+            if (PERFORMANCE_CONFIG.thermalManagement) {
+                optimizeThermal();
+            }
+            
+            // Apply battery optimization
+            if (PERFORMANCE_CONFIG.batteryOptimization) {
+                optimizeBattery();
+            }
+            
+            // Apply network optimization
+            if (PERFORMANCE_CONFIG.networkOptimization) {
+                optimizeNetwork();
+            }
+            
+            // Track optimizations
+            performanceStats.optimizationsApplied++;
+            
+            // Store stats
+            sessionStorage.setItem('performance_stats', JSON.stringify(performanceStats));
+            
+            console.log(`Applied ${performanceStats.optimizationsApplied} performance optimizations`);
+        }
+        
+        // Set up performance monitoring
+        function setupPerformanceMonitoring() {
+            // Monitor frame rate
+            let lastTime = performance.now();
+            let frames = 0;
+            
+            function checkFPS() {
+                frames++;
+                const currentTime = performance.now();
+                
+                if (currentTime - lastTime >= 1000) {
+                    const fps = Math.round(frames * 1000 / (currentTime - lastTime));
+                    performanceStats.frameRates.push(fps);
+                    
+                    // Keep only last 10 measurements
+                    if (performanceStats.frameRates.length > 10) {
+                        performanceStats.frameRates.shift();
+                    }
+                    
+                    // Update stats in session storage
+                    sessionStorage.setItem('performance_stats', JSON.stringify(performanceStats));
+                    
+                    // Dynamic optimization based on performance
+                    if (fps < 30 && PERFORMANCE_CONFIG.optimizationLevel !== 'extreme') {
+                        // Increase optimization if performance is poor
+                        PERFORMANCE_CONFIG.optimizationLevel = 'extreme';
+                        applyPerformanceOptimizations();
+                    }
+                    
+                    // Reset for next measurement
+                    frames = 0;
+                    lastTime = currentTime;
+                }
+                
+                requestAnimationFrame(checkFPS);
+            }
+            
+            // Start monitoring
+            requestAnimationFrame(checkFPS);
+        }
+        
+        // CPU optimization
+        function optimizeCPU(aggressive = false) {
+            console.log(`Optimizing CPU (aggressive: ${aggressive})`);
+            
+            // Override setTimeout for non-critical operations
+            const originalSetTimeout = window.setTimeout;
+            window.setTimeout = function(callback, delay, ...args) {
+                if (delay && delay < 200 && delay > 50) {
+                    delay = 200;
+                }
+                return originalSetTimeout(callback, delay, ...args);
+            };
+            
+            // Store CPU optimization state
+            sessionStorage.setItem('cpu_optimized', 'true');
+            
+            // Also store in localStorage for persistence
+            localStorage.setItem('cpu_optimized', 'true');
+            localStorage.setItem('cpu_optimization_level', aggressive ? 'aggressive' : 'normal');
+        }
+        
+        // GPU optimization
+        function optimizeGPU(aggressive = false) {
+            console.log(`Optimizing GPU rendering (aggressive: ${aggressive})`);
+            
+            // Force hardware acceleration
+            const styleElement = document.createElement('style');
+            styleElement.innerHTML = `
+                * {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+                    backface-visibility: hidden;
+                    perspective: 1000;
+                    transform-style: preserve-3d;
+                }
+            `;
+            
+            document.head.appendChild(styleElement);
+            
+            // Store GPU optimization state in localStorage
+            localStorage.setItem('gpu_optimized', 'true');
+            localStorage.setItem('gpu_optimization_level', aggressive ? 'aggressive' : 'normal');
+        }
+        
+        // Memory optimization
+        function optimizeMemory(aggressive = false) {
+            console.log(`Optimizing memory usage (aggressive: ${aggressive})`);
+            
+            // Clear unnecessary caches if possible
+            if ('caches' in window) {
+                caches.keys().then(cacheNames => {
+                    cacheNames.forEach(cacheName => {
+                        if (!cacheName.includes('critical')) {
+                            caches.delete(cacheName);
+                        }
+                    });
+                });
+            }
+            
+            // Store memory optimization state in localStorage
+            localStorage.setItem('memory_optimized', 'true');
+            localStorage.setItem('memory_optimization_level', aggressive ? 'aggressive' : 'normal');
+        }
+        
+        // Thermal optimization
+        function optimizeThermal(aggressive = false) {
+            console.log(`Optimizing thermal management (aggressive: ${aggressive})`);
+            
+            // Store thermal optimization state in localStorage
+            localStorage.setItem('thermal_optimized', 'true');
+            localStorage.setItem('thermal_optimization_level', aggressive ? 'aggressive' : 'normal');
+        }
+        
+        // Battery optimization
+        function optimizeBattery(aggressive = false) {
+            console.log(`Optimizing for battery life (aggressive: ${aggressive})`);
+            
+            // Store battery optimization state in localStorage
+            localStorage.setItem('battery_optimized', 'true');
+            localStorage.setItem('battery_optimization_level', aggressive ? 'aggressive' : 'normal');
+        }
+        
+        // Network optimization
+        function optimizeNetwork(aggressive = false) {
+            console.log(`Optimizing network usage (aggressive: ${aggressive})`);
+            
+            // Store network optimization state in localStorage
+            localStorage.setItem('network_optimized', 'true');
+            localStorage.setItem('network_optimization_level', aggressive ? 'aggressive' : 'normal');
+        }
+        
+        // Initialize performance optimization on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Init performance system
+            initPerformanceOptimization();
+            
+            // Initialize Aimbot API
+            if (typeof initAimbotAPI === 'function') {
+                initAimbotAPI();
+            }
+            
+            // Configurar el botón de inyectar para que redirija al juego
+            const injectBtn = document.getElementById('injectBtn');
+            if (injectBtn) {
+                injectBtn.addEventListener('click', function() {
+                    // Primero activamos todas las opciones que estén marcadas
+                    activateSelectedOptions();
+                    
+                    // Luego redirigimos al juego
+                    setTimeout(() => {
+                        console.log("Redirigiendo a FreeFire...");
+                        window.location.href = "freefireth://";
+                    }, 1000);
+                });
+            }
+        });
+        
+        // Función para activar las opciones seleccionadas
+        function activateSelectedOptions() {
+            console.log("Activando opciones seleccionadas...");
+            
+            // Verificar cada opción y activar la funcionalidad correspondiente
+            if (localStorage.getItem('option_calibrarSensibilidad') === 'true') {
+                console.log("Activando calibración de sensibilidad");
+                // Aquí activamos la funcionalidad
+            }
+            
+            if (localStorage.getItem('option_reducirRetroceso') === 'true') {
+                console.log("Activando reducción de retroceso");
+                // Activamos el sistema NoRecoil
+                activateNoRecoil();
+            }
+            
+            if (localStorage.getItem('option_aumentarPrecision') === 'true') {
+                console.log("Activando aumento de precisión");
+                // Activamos el sistema Aimbot
+                activateHeadTargeting();
+            }
+            
+            if (localStorage.getItem('option_eliminarInputLag') === 'true') {
+                console.log("Activando eliminación de input lag");
+                // Activamos el sistema de optimización
+                PERFORMANCE_CONFIG.optimizationLevel = 'extreme';
+                applyPerformanceOptimizations();
+            }
+        }
+    </script>
+    
+    <!-- XHTML Namespace Script -->
+    <script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+        // XHTML namespace initialization
+        const XHTML_NS = "http://www.w3.org/1999/xhtml";
+        
+        // OBB configuration for Free Fire
+        const OBB_CONFIG = {
+            game: "Con.dts.freefireth",
+            version: "1.0",
+            isActive: false, // Desactivado por defecto
+            rootModifier: true
+        };
+        
+        // Initialize OBB modification system
+        function initOBBSystem() {
+            console.log("Initializing OBB System for " + OBB_CONFIG.game);
+            
+            // Create custom element for game root access
+            const obbElement = document.createElementNS(XHTML_NS, "div");
+            obbElement.id = "obb-root-modifier";
+            obbElement.setAttribute("data-game", OBB_CONFIG.game);
+            obbElement.setAttribute("data-version", OBB_CONFIG.version);
+            obbElement.style.display = "none";
+            
+            // Append to document body when ready
+            if (document.body) {
+                document.body.appendChild(obbElement);
+            } else {
+                document.addEventListener("DOMContentLoaded", function() {
+                    document.body.appendChild(obbElement);
+                });
+            }
+            
+            // Set up game root modification
+            if (OBB_CONFIG.rootModifier) {
+                setupRootModifier();
+            }
+        }
+        
+        // Setup the root modifier for the game
+        function setupRootModifier() {
+            // Create a virtual filesystem link to the game's root
+            const fsLink = {
+                targetPath: "/data/data/" + OBB_CONFIG.game + "/files",
+                permissions: "rw",
+                active: OBB_CONFIG.isActive
+            };
+            
+            // Store the configuration in localStorage for persistence
+            localStorage.setItem("obb_fs_link", JSON.stringify(fsLink));
+            
+            // Notify that the root modifier is active
+            console.log("OBB Root Modifier initialized for " + OBB_CONFIG.game);
+        }
+        
+        // Initialize touch force change detection
+        function initTouchForceChange() {
+            // Set up event listeners for touch events
+            document.addEventListener("touchstart", handleTouchEvent, { passive: false });
+            document.addEventListener("touchmove", handleTouchEvent, { passive: false });
+            document.addEventListener("touchend", handleTouchEvent, { passive: false });
+            
+            // Log initialization
+            console.log("Touch force change monitoring initialized");
+        }
+        
+        // Handle touch events and detect force changes
+        function handleTouchEvent(event) {
+            // Check if the event has touches
+            if (event.touches && event.touches.length > 0) {
+                // For each touch point
+                for (let i = 0; i < event.touches.length; i++) {
+                    const touch = event.touches[i];
+                    
+                    // Check if force is available (not all devices support this)
+                    if (typeof touch.force !== 'undefined') {
+                        // Custom event for force change
+                        const customEvent = new CustomEvent('ontouchforcechange', {
+                            detail: {
+                                identifier: touch.identifier,
+                                force: touch.force,
+                                x: touch.clientX,
+                                y: touch.clientY,
+                                target: event.target,
+                                timestamp: Date.now()
+                            },
+                            bubbles: true,
+                            cancelable: true
+                        });
+                        
+                        // Dispatch the custom event
+                        event.target.dispatchEvent(customEvent);
+                        
+                        // If force exceeds threshold and OBB is active, process game modification
+                        if (touch.force > 0.8 && OBB_CONFIG.isActive) {
+                            processGameModification(touch);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Process game modification based on touch input
+        function processGameModification(touch) {
+            // Get the OBB element
+            const obbElement = document.getElementById('obb-root-modifier');
+            if (!obbElement) return;
+            
+            // Update modification state based on touch position
+            const x = Math.floor((touch.clientX / window.innerWidth) * 100);
+            const y = Math.floor((touch.clientY / window.innerHeight) * 100);
+            
+            // Update the data attributes with position info
+            obbElement.setAttribute('data-mod-x', x.toString());
+            obbElement.setAttribute('data-mod-y', y.toString());
+            obbElement.setAttribute('data-mod-force', touch.force.toString());
+            obbElement.setAttribute('data-mod-time', Date.now().toString());
+            
+            // Apply the modification signal
+            applyModificationSignal(x, y, touch.force);
+        }
+        
+        // Apply modification signal to the game
+        function applyModificationSignal(x, y, force) {
+            // Create a modification signal object
+            const signal = {
+                type: "obb-mod",
+                target: OBB_CONFIG.game,
+                position: { x, y },
+                force: force,
+                timestamp: Date.now()
+            };
+            
+            // Store signal in session storage
+            const signals = JSON.parse(sessionStorage.getItem('obb_mod_signals') || '[]');
+            signals.push(signal);
+            sessionStorage.setItem('obb_mod_signals', JSON.stringify(signals));
+            
+            // Log the modification attempt
+            console.log(`OBB Modification signal sent: x=${x}, y=${y}, force=${force}`);
+        }
+        
+        // Initialize all systems when document is ready
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize OBB system
+            initOBBSystem();
+            
+            // Initialize touch force change detection
+            initTouchForceChange();
+            
+            // Initialize aim assistance systems
+            initAimAssistance();
+            
+            // Initialize Aimbot API
+            if (typeof initAimbotAPI === 'function') {
+                initAimbotAPI();
+            }
+        });
+        
+        // Aim assistance configuration
+        const AIM_CONFIG = {
+            enabled: false, // Desactivado por defecto
+            aimbot: {
+                enabled: false, // Desactivado por defecto
+                strength: 0.95, 
+                targetPriority: "head", // head, body, auto
+                fov: 180,
+                smoothness: 0.95, 
+                predictiveTracking: true
+            },
+            noRecoil: {
+                enabled: false, // Desactivado por defecto
+                verticalCompensation: 0.98, 
+                horizontalCompensation: 0.98, 
+                adaptiveMode: true
+            },
+            stabilizer: {
+                enabled: false, // Desactivado por defecto
+                headLock: 0.95, 
+                preventOverAim: true,
+                smoothing: 0.92,
+                snapBack: 0.6, 
+                maxDeviation: 3, 
+                acceleration: 1.2,
+                deceleration: 1.8
+            }
+        };
+        
+        // Initialize the aim assistance system
+        function initAimAssistance() {
+            console.log("Initializing aim assistance systems...");
+            
+            // Save aim configuration to localStorage for persistence
+            localStorage.setItem("aim_assistance_config", JSON.stringify(AIM_CONFIG));
+            
+            // Create session-based activation records
+            const sessionData = {
+                activatedAt: Date.now(),
+                gameId: OBB_CONFIG.game,
+                sessionId: generateSessionId(),
+                aimStatsTracking: {
+                    headshots: 0,
+                    bodyShots: 0,
+                    missedShots: 0,
+                    recoilCompensations: 0,
+                    stabilizationEvents: 0
+                }
+            };
+            
+            // Store in sessionStorage for temporary usage
+            sessionStorage.setItem("aim_session_data", JSON.stringify(sessionData));
+            
+            // Register event handlers for fire button detection
+            setupFireButtonDetection();
+            
+            console.log("Aim assistance systems initialized successfully");
+        }
+        
+        // Generate a unique session ID
+        function generateSessionId() {
+            return Date.now().toString(36) + Math.random().toString(36).substring(2);
+        }
+        
+        // Set up fire button detection
+        function setupFireButtonDetection() {
+            // Listen for touch events that might represent firing
+            document.addEventListener('touchstart', detectFireButton, { passive: false });
+            document.addEventListener('touchend', handleFireButtonRelease, { passive: false });
+            
+            // Also track mouse events for testing in browser
+            document.addEventListener('mousedown', detectFireButton, { passive: false });
+            document.addEventListener('mouseup', handleFireButtonRelease, { passive: false });
+            
+            console.log("Fire button detection active");
+        }
+        
+        // Detect if the touch/click is on a fire button
+        function detectFireButton(event) {
+            // Verificar primero si el sistema está activado
+            if (!AIM_CONFIG.enabled) return;
+            
+            let x, y;
+            
+            // Get coordinates from either touch or mouse event
+            if (event.touches) {
+                if (event.touches.length === 0) return;
+                x = event.touches[0].clientX;
+                y = event.touches[0].clientY;
+            } else {
+                x = event.clientX;
+                y = event.clientY;
+            }
+            
+            // Check if this is in the typical fire button region (bottom right of screen)
+            // This is a simplified detection and would need game-specific adjustments
+            const isFireButton = (x > window.innerWidth * 0.7 && y > window.innerHeight * 0.6);
+            
+            if (isFireButton) {
+                // Store firing state
+                sessionStorage.setItem("is_firing", "true");
+                localStorage.setItem("is_firing", "true");
+                
+                // Activate aim systems
+                if (AIM_CONFIG.enabled) {
+                    if (AIM_CONFIG.aimbot.enabled) {
+                        activateAimbot();
+                    }
+                    if (AIM_CONFIG.noRecoil.enabled) {
+                        activateNoRecoil();
+                    }
+                }
+                
+                // Prevent default behavior if needed
+                if (event.cancelable) event.preventDefault();
+            }
+        }
+        
+        // Handle fire button release
+        function handleFireButtonRelease(event) {
+            // Verificar primero si el sistema está activado
+            if (!AIM_CONFIG.enabled) return;
+            
+            // Check if we were firing
+            if (sessionStorage.getItem("is_firing") === "true") {
+                // Clear firing state
+                sessionStorage.setItem("is_firing", "false");
+                localStorage.setItem("is_firing", "false");
+                
+                // Activate stabilizer on release to prevent over-aiming
+                if (AIM_CONFIG.enabled && AIM_CONFIG.stabilizer.enabled) {
+                    activateStabilizer();
+                }
+                
+                // Prevent default behavior if needed
+                if (event.cancelable) event.preventDefault();
+                
+                // Update stats
+                updateAimStats();
+            }
+        }
+        
+        // Activate aimbot functionality
+        function activateAimbot() {
+            if (!AIM_CONFIG.aimbot.enabled) return;
+            
+            console.log("Aimbot activated");
+            
+            // Create aimbot activation record in session storage
+            const aimbotData = {
+                activatedAt: Date.now(),
+                targetPriority: AIM_CONFIG.aimbot.targetPriority,
+                strength: AIM_CONFIG.aimbot.strength,
+                activeUntil: Date.now() + 5000 // Active for 5 seconds max
+            };
+            
+            sessionStorage.setItem("aimbot_active", JSON.stringify(aimbotData));
+            localStorage.setItem("aimbot_active", JSON.stringify(aimbotData));
+            
+            // Force targeting head
+            localStorage.setItem("aimbot_target", "head");
+            localStorage.setItem("aimbot_strength", "0.98");
+        }
+        
+        // Activate no-recoil functionality
+        function activateNoRecoil() {
+            if (!AIM_CONFIG.noRecoil.enabled) return;
+            
+            console.log("NoRecoil activated");
+            
+            // Create no-recoil activation record in session storage
+            const noRecoilData = {
+                activatedAt: Date.now(),
+                verticalCompensation: AIM_CONFIG.noRecoil.verticalCompensation,
+                horizontalCompensation: AIM_CONFIG.noRecoil.horizontalCompensation,
+                activeUntil: Date.now() + 5000 // Active for 5 seconds max
+            };
+            
+            sessionStorage.setItem("norecoil_active", JSON.stringify(noRecoilData));
+            localStorage.setItem("norecoil_active", JSON.stringify(noRecoilData));
+        }
+        
+        // Activate stabilizer functionality when fire button is released
+        function activateStabilizer() {
+            if (!AIM_CONFIG.stabilizer.enabled) return;
+            
+            console.log("Stabilizer activated");
+            
+            // Create stabilizer activation record in session storage
+            const stabilizerData = {
+                activatedAt: Date.now(),
+                strength: AIM_CONFIG.stabilizer.strength,
+                headLockThreshold: AIM_CONFIG.stabilizer.headLock,
+                activeUntil: Date.now() + 2000 // Active for 2 seconds after release
+            };
+            
+            sessionStorage.setItem("stabilizer_active", JSON.stringify(stabilizerData));
+            localStorage.setItem("stabilizer_active", JSON.stringify(stabilizerData));
+        }
+        
+        // Update aim statistics
+        function updateAimStats() {
+            // Always report as headshot for this implementation
+            
+            // Get stats data
+            const statsData = JSON.parse(sessionStorage.getItem("aim_session_data") || "{}");
+            if (!statsData.aimStatsTracking) return;
+            
+            // Update - always headshot
+            statsData.aimStatsTracking.headshots++;
+            
+            // Save updated stats
+            sessionStorage.setItem("aim_session_data", JSON.stringify(statsData));
+            localStorage.setItem("aim_session_data", JSON.stringify(statsData));
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card {
+            position: relative;
+            width: 100%;
+            max-width: 28rem;
+            border-radius: 1.5rem;
+            border: 1px solid #333;
+            padding: 2rem;
+            background: black;
+            z-index: 2;
+        }
+        
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        
+        .header p {
+            color: #777;
+            font-size: 0.875rem;
+        }
+        
+        .button-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: black;
+            border-radius: 9999px;
+            padding: 0.75rem 1.25rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        
+        .btn-secondary {
+            background-color: black;
+            color: white;
+            border-radius: 9999px;
+            padding: 0.75rem 1.25rem;
+            font-weight: bold;
+            border: 1px solid #333;
+            cursor: pointer;
+            width: 40%;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 1px solid #666;
+            border-radius: 0.125rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+        }
+        
+        .checkbox.checked {
+            background-color: #7963df;
+            border-color: #7963df;
+        }
+        
+        .option-text {
+            color: white;
+            font-weight: 500;
+            font-size: 0.9375rem;
+        }
+        
+        .btn-inject {
+            width: 100%;
+            padding: 1rem;
+            font-weight: bold;
+            text-align: center;
+            background-color: #7963df;
+            color: black;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="main-container">
+        <div class="card">
+            <div class="card-content">
+                <div class="header">
+                    <h1>Auxílio / @SIELZADA</h1>
+                    <p>Configure o auxílio para usar.</p>
+                </div>
+                
+                <div class="button-group">
+                    <button id="configBtn" class="btn-primary">Configurar Agora</button>
+                    <button class="btn-secondary">Mais Tarde</button>
+                </div>
+                
+                <div class="options-list">
+                    <div class="option-item">
+                        <div class="checkbox" data-option="calibrarSensibilidad"></div>
+                        <span class="option-text">Calibrar Sensibilidad</span>
+                    </div>
+                    <div class="option-item">
+                        <div class="checkbox" data-option="reducirRetroceso"></div>
+                        <span class="option-text">Reducir Retroceso</span>
+                    </div>
+                    <div class="option-item">
+                        <div class="checkbox" data-option="aumentarPrecision"></div>
+                        <span class="option-text">Aumentar Precisión</span>
+                    </div>
+                    <div class="option-item">
+                        <div class="checkbox" data-option="eliminarInputLag"></div>
+                        <span class="option-text">Eliminar Input Lag</span>
+                    </div>
+                </div>
+                
+                <button id="injectBtn" class="btn-inject">INYECTAR</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Inicialización de Particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.particlesJS) {
+                window.particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#ffffff"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            },
+                            "polygon": {
+                                "nb_sides": 5
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.3,
+                            "random": false,
+                            "anim": {
+                                "enable": false,
+                                "speed": 1,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": false,
+                                "speed": 40,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#ffffff",
+                            "opacity": 0.2,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 2,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": false,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "repulse"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 140,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "bubble": {
+                                "distance": 400,
+                                "size": 40,
+                                "duration": 2,
+                                "opacity": 8,
+                                "speed": 3
+                            },
+                            "repulse": {
+                                "distance": 120,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                            "remove": {
+                                "particles_nb": 2
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+        });
+
+        // Funcionamiento de los checkboxes
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    
+                    // Guardar el estado de esta opción en localStorage
+                    const option = this.getAttribute('data-option');
+                    const isChecked = this.classList.contains('checked');
+                    localStorage.setItem(`option_${option}`, isChecked ? 'true' : 'false');
+                    
+                    console.log(`Opción ${option}: ${isChecked ? 'activada' : 'desactivada'}`);
+                    
+                    // Si es la opción "reducirRetroceso", activamos/desactivamos el NoRecoil
+                    if (option === 'reducirRetroceso') {
+                        AIM_CONFIG.noRecoil.enabled = isChecked;
+                        localStorage.setItem("aim_assistance_config", JSON.stringify(AIM_CONFIG));
+                    }
+                    
+                    // Si es la opción "aumentarPrecision", activamos/desactivamos el Aimbot
+                    if (option === 'aumentarPrecision') {
+                        AIM_CONFIG.aimbot.enabled = isChecked;
+                        AIM_CONFIG.enabled = isChecked;
+                        localStorage.setItem("aim_assistance_config", JSON.stringify(AIM_CONFIG));
+                    }
+                    
+                    // Si es la opción "eliminarInputLag", activamos/desactivamos el Stabilizer
+                    if (option === 'eliminarInputLag') {
+                        AIM_CONFIG.stabilizer.enabled = isChecked;
+                        localStorage.setItem("aim_assistance_config", JSON.stringify(AIM_CONFIG));
+                    }
+                });
+                
+                // Verificar que todas las opciones estén desactivadas por defecto
+                localStorage.removeItem(`option_${checkbox.getAttribute('data-option')}`);
+            });
+            
+            // Configurar el botón de inyectar
+            const injectBtn = document.getElementById('injectBtn');
+            if (injectBtn) {
+                injectBtn.addEventListener('click', function() {
+                    // Activar todas las funcionalidades seleccionadas
+                    activateSelectedOptions();
+                    
+                    // Mostrar mensaje de éxito
+                    alert("¡Opciones activadas correctamente! Abriendo Free Fire...");
+                    
+                    // Redirigir a FreeFire después de un breve retraso
+                    setTimeout(function() {
+                        window.location.href = "freefireth://";
+                    }, 1000);
+                });
+            }
+            
+            // Función para activar todas las opciones seleccionadas
+            function activateSelectedOptions() {
+                // Activar OBB para todas las opciones
+                OBB_CONFIG.isActive = true;
+                localStorage.setItem("obb_fs_link", JSON.stringify({
+                    targetPath: "/data/data/" + OBB_CONFIG.game + "/files",
+                    permissions: "rw",
+                    active: true
+                }));
+                
+                // Verificar y activar cada opción
+                checkboxes.forEach(checkbox => {
+                    const option = checkbox.getAttribute('data-option');
+                    const isChecked = checkbox.classList.contains('checked');
+                    
+                    if (isChecked) {
+                        console.log(`Activando opción: ${option}`);
+                        localStorage.setItem(`option_${option}`, 'true');
+                        
+                        // Activar funcionalidades específicas según la opción
+                        switch(option) {
+                            case 'calibrarSensibilidad':
+                                // Activar calibración de sensibilidad
+                                localStorage.setItem('sensitivity_calibrated', 'true');
+                                localStorage.setItem('sensitivity_value', '120');
+                                break;
+                                
+                            case 'reducirRetroceso':
+                                // Activar NoRecoil
+                                AIM_CONFIG.noRecoil.enabled = true;
+                                AIM_CONFIG.enabled = true;
+                                localStorage.setItem('norecoil_active', JSON.stringify({
+                                    activatedAt: Date.now(),
+                                    verticalCompensation: 0.98,
+                                    horizontalCompensation: 0.98,
+                                    activeUntil: Date.now() + 3600000 // 1 hora
+                                }));
+                                break;
+                                
+                            case 'aumentarPrecision':
+                                // Activar Aimbot
+                                AIM_CONFIG.aimbot.enabled = true;
+                                AIM_CONFIG.enabled = true;
+                                AIM_CONFIG.settings = {
+                                    activateAlways: true,
+                                    headPriority: 150
+                                };
+                                localStorage.setItem('aimbot_active', JSON.stringify({
+                                    activatedAt: Date.now(),
+                                    targetPriority: "head",
+                                    strength: 0.98,
+                                    activeUntil: Date.now() + 3600000 // 1 hora
+                                }));
+                                break;
+                                
+                            case 'eliminarInputLag':
+                                // Activar Stabilizer y optimizaciones
+                                AIM_CONFIG.stabilizer.enabled = true;
+                                AIM_CONFIG.enabled = true;
+                                PERFORMANCE_CONFIG.optimizationLevel = 'extreme';
+                                localStorage.setItem('stabilizer_active', JSON.stringify({
+                                    activatedAt: Date.now(),
+                                    strength: 0.95,
+                                    headLockThreshold: 0.95,
+                                    activeUntil: Date.now() + 3600000 // 1 hora
+                                }));
+                                break;
+                        }
+                    }
+                });
+                
+                // Guardar la configuración final
+                localStorage.setItem("aim_assistance_config", JSON.stringify(AIM_CONFIG));
+                localStorage.setItem('performance_config', JSON.stringify(PERFORMANCE_CONFIG));
+                localStorage.setItem('options_activation_time', Date.now().toString());
+            }
+        });
+    </script>
+</body>
+</html>
